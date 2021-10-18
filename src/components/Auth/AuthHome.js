@@ -1,15 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
-const Auth = () => {
+const AuthHome = () => {
   const history = useHistory();
+  const { pathname } = useLocation();
 
   const login = () => {
-    history.push("/login");
+    history.push(`${pathname}/login`);
   };
 
   const createAccount = () => {
-    history.push("/create-account");
+    history.push(`${pathname}/create-account`);
   };
 
   return (
@@ -40,4 +41,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthHome;
