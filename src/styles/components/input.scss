@@ -1,0 +1,12 @@
+.input {
+  font-size: 1.6rem;
+  width: 80%;
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: none;
+
+  &::placeholder {
+    font-size: 1.6rem;
+  }
+}
