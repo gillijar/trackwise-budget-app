@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../UI/Button";
 import { useHistory, useLocation } from "react-router-dom";
 
 const AuthHome = () => {
@@ -24,12 +25,16 @@ const AuthHome = () => {
 
       <div className="auth__option">
         <div className="auth__option--container">
-          <button className="btn" onClick={login}>
+          <Button type="button" btnClass="auth__option--btn" onClick={login}>
             Login
-          </button>
-          <button className="btn" onClick={createAccount}>
+          </Button>
+          <Button
+            type="button"
+            btnClass="auth__option--btn"
+            onClick={createAccount}
+          >
             Create Account
-          </button>
+          </Button>
         </div>
       </div>
 
