@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Input from "../UI/Input";
+import Button from "../UI/Button";
 
 const AuthCreateAccount = () => {
   return (
@@ -11,7 +12,7 @@ const AuthCreateAccount = () => {
           <Input type="email" placeholder="Email" />
           <Input type="password" placeholder="Password" />
           <Input type="password" placeholder="Confirm Password" />
-          <button type="submit">Create Account</button>
+          <Button type="submit">Create Account</Button>
         </form>
         <p className="confirm__change-auth">
           Already have an account?{" "}
