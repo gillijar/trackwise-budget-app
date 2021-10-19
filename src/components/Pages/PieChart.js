@@ -6,6 +6,10 @@ const PieChartDisplay = () => {
     <div className="pie-chart">
       <PieChart
         startAngle={-90}
+        paddingAngle={2.25}
+        animate={true}
+        animationDuration={1250}
+        animationEasing={"ease"}
         data={[
           { title: "One", value: 40, color: "#FA28BF" },
           { title: "Two", value: 15, color: "#3AEB4B" },

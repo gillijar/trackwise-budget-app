@@ -24,28 +24,23 @@
 
     &-title {
       font-size: 2.2rem;
-      padding: 2rem 0 3rem 0;
+      padding: 1.5rem 0 3rem 0;
     }
 
     &-icons {
-      padding: 2rem 3rem;
+      padding-top: 2rem;
       text-align: end;
+      color: $graph-5;
+      font-size: 2.2rem;
+      text-decoration: none;
 
-      & a:visited,
-      a:active,
-      a:link {
-        color: $graph-1;
-        font-size: 2.2rem;
-        text-decoration: none;
-      }
-
-      & a:not(:last-child) {
+      & :not(:last-child) {
         padding-right: 1.5rem;
-      }
-
-      & a.active {
-        color: $color-primary-2;
       }
     }
   }
+}
+
+.active {
+  color: $color-primary-2;
 }
