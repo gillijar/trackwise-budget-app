@@ -6,7 +6,7 @@ const Greet = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      history.push("/auth");
+      history.push("/dashboard");
     }, 2750);
   }, [history]);
 
