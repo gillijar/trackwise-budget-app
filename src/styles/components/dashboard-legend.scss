@@ -1,0 +1,70 @@
+.legend {
+  &__container {
+    & ul {
+      list-style-type: none;
+    }
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    padding-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  &__item {
+    padding: 2.15rem 0;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--description {
+      display: flex;
+
+      & p {
+        padding-left: 1.25rem;
+      }
+    }
+
+    &--line {
+      flex: 1;
+      padding: 0 2.25rem;
+
+      &-through {
+        height: 0.1rem;
+        width: 100%;
+        background: $color-transparent-3;
+      }
+    }
+
+    &--circle {
+      height: 1.4rem;
+      width: 1.4rem;
+      border-radius: 50%;
+
+      &-1 {
+        background: $graph-1;
+      }
+
+      &-2 {
+        background: $graph-2;
+      }
+
+      &-3 {
+        background: $graph-3;
+      }
+
+      &-4 {
+        background: $graph-4;
+      }
+
+      &-5 {
+        background: $graph-5;
+      }
+    }
+
+    &--price {
+      font-weight: 500;
+    }
+  }
+}
