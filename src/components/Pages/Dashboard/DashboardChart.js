@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PieChart from "../../UI/PieChart";
+import BarChart from "../../UI/BarChart";
 import DashboardCard from "../../UI/DashboardCard";
 
 const DashboardChart = () => {
@@ -16,14 +17,9 @@ const DashboardChart = () => {
   return (
     <DashboardCard>
       <div className="dashboard__chart">
-        {chart === "pie" && (
-          <p className="dashboard__chart-title">Monthly Expenses</p>
-        )}
-        {chart === "line" && (
-          <p className="dashboard__chart-title">Yearly Expenses</p>
-        )}
+        <p className="dashboard__chart-title">Monthly Expenses</p>
         {chart === "pie" && <PieChart />}
-        {chart === "line" && <p>This is where the line graph will be</p>}
+        {chart === "line" && <BarChart />}
         <div className="dashboard__chart-icons">
           <i
             className={
