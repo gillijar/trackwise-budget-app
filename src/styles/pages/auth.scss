@@ -68,11 +68,19 @@
 
   &__option {
     width: 100%;
-    height: 75%;
+    height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
+
+    &--btn2 {
+      height: 5.5rem;
+      background: white;
+      width: 90%;
+      padding: 1rem 2rem;
+      margin-bottom: 1.5rem;
+    }
 
     &--container {
       width: 70%;
@@ -82,6 +90,24 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    &--google {
+      height: 100%;
+
+      &-logo {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      & img {
+        height: 100%;
+      }
+
+      & p {
+        color: rgb(145, 145, 145);
+      }
     }
 
     &--btn {
