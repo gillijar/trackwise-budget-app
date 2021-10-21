@@ -22,9 +22,25 @@
   &__chart {
     text-align: center;
 
-    &-title {
-      font-size: 2.2rem;
-      padding: 1.5rem 0 3rem 0;
+    &-info {
+      padding-bottom: 1.5rem;
+
+      &--title {
+        font-size: 2.2rem;
+        padding: 1.5rem 0 2rem 0;
+      }
+
+      &--date {
+        font-size: 1.6rem;
+        font-weight: bold;
+        padding-bottom: 0.5rem;
+      }
+    }
+
+    &-icon {
+      &--bar {
+        transform: rotate(90deg) scaleX(-1);
+      }
     }
 
     &-icons {

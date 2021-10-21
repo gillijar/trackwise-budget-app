@@ -16,17 +16,17 @@ const DashboardLegend = () => {
     },
     {
       name: "Transportation",
-      price: 83.75,
+      price: 56.34,
       id: 3,
     },
     {
       name: "Luxury",
-      price: 164.97,
+      price: 45.23,
       id: 4,
     },
     {
       name: "Other",
-      price: 29.08,
+      price: 39.53,
       id: 5,
     },
   ];

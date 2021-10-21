@@ -1,17 +1,83 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 
 const AuthCreateAccount = () => {
+  const APIKey = "AIzaSyAmDf_ayrM-XIbiKeLlrcvW3nrxx5KxFJE";
   const history = useHistory();
   const { path } = useRouteMatch();
-  console.log(path);
+
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
+
+  const isEqual =
+    password === confirm && password.length > 0 && confirm.length > 0;
+
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const confirmPassInputRef = useRef();
+
+  const passwordValue = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const confirmValue = (e) => {
+    setConfirm(e.target.value);
+  };
+
+  const passwordVisibility = (prevState) => {
+    setPasswordVisible((prevState) => !prevState);
+  };
+
+  const confirmVisibility = (prevState) => {
+    setConfirmVisible((prevState) => !prevState);
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
 
-    history.push(`${path}/new-user`);
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    const enteredConfirmPass = confirmPassInputRef.current.value;
+    if (enteredConfirmPass !== enteredPassword) {
+      alert("Passwords must match.");
+      return;
+    }
+
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${APIKey}`;
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            const errorMessage = data.error.message;
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        history.replace(`${path}/new-user`);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   return (
@@ -19,9 +85,56 @@ const AuthCreateAccount = () => {
       <div className="confirm__container">
         <p className="confirm__container--p">Create New Account</p>
         <form className="confirm__container--form" onSubmit={submitForm}>
-          <Input type="email" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
-          <Input type="password" placeholder="Confirm Password" />
+          <div className="confirm__container--form-input">
+            <i className="fas fa-at icon"></i>
+            <Input
+              type="email"
+              placeholder="Email"
+              ref={emailInputRef}
+              required="required"
+            />
+          </div>
+          <div className="confirm__container--form-input">
+            <i className="fas fa-lock icon"></i>
+            <Input
+              type={!passwordVisible ? "password" : "text"}
+              placeholder="Password"
+              ref={passwordInputRef}
+              required="required"
+              onChange={passwordValue}
+              value={password}
+            />
+            {password.length > 0 && !passwordVisible && (
+              <i className="far fa-eye icon" onClick={passwordVisibility}></i>
+            )}
+            {password.length > 0 && passwordVisible && (
+              <i
+                className="fas fa-eye icon test"
+                onClick={passwordVisibility}
+              ></i>
+            )}
+          </div>
+          <div className="confirm__container--form-input">
+            {!isEqual && <i className="fas fa-lock-open icon"></i>}
+            {isEqual && <i className="fas fa-lock icon"></i>}
+            <Input
+              type={!confirmVisible ? "password" : "text"}
+              placeholder="Confirm Password"
+              ref={confirmPassInputRef}
+              required="required"
+              onChange={confirmValue}
+              value={confirm}
+            />
+            {confirm.length > 0 && !confirmVisible && (
+              <i className="far fa-eye icon" onClick={confirmVisibility}></i>
+            )}
+            {confirm.length > 0 && confirmVisible && (
+              <i
+                className="fas fa-eye icon test"
+                onClick={confirmVisibility}
+              ></i>
+            )}
+          </div>
           <Button type="submit">Create Account</Button>
         </form>
         <p className="confirm__change-auth">
