@@ -6,6 +6,23 @@ import DashboardCard from "../../UI/DashboardCard";
 const DashboardChart = () => {
   const [chart, setChart] = useState("pie");
 
+  const date = new Date();
+  const curMonth = date.getMonth();
+  const months = [
+    ["Jan", 31],
+    ["Feb", 28],
+    ["Mar", 31],
+    ["Apr", 30],
+    ["May", 31],
+    ["Jun", 30],
+    ["Jul", 31],
+    ["Aug", 31],
+    ["Sep", 30],
+    ["Oct", 31],
+    ["Nov", 30],
+    ["Dec", 31],
+  ];
+
   const setPieHandler = () => {
     setChart("pie");
   };
@@ -17,7 +34,13 @@ const DashboardChart = () => {
   return (
     <DashboardCard>
       <div className="dashboard__chart">
-        <p className="dashboard__chart-title">Monthly Expenses</p>
+        <div className="dashboard__chart-info">
+          <p className="dashboard__chart-info--title">Monthly Expenses</p>
+          <p className="dashboard__chart-info--date">
+            {months[curMonth][0]} 1 - {months[curMonth][0]}{" "}
+            {months[curMonth][1]}
+          </p>
+        </div>
         {chart === "pie" && <PieChart />}
         {chart === "line" && <BarChart />}
         <div className="dashboard__chart-icons">
@@ -32,8 +55,8 @@ const DashboardChart = () => {
           <i
             className={
               chart === "line"
-                ? "fas fa-chart-line dashboard__chart-icon active"
-                : "fas fa-chart-line dashboard__chart-icon"
+                ? "far fa-chart-bar dashboard__chart-icon dashboard__chart-icon--bar active"
+                : "far fa-chart-bar dashboard__chart-icon dashboard__chart-icon--bar"
             }
             onClick={setLineHandler}
           ></i>

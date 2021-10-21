@@ -27,11 +27,23 @@
       justify-content: space-around;
       align-items: center;
 
-      & input {
+      &-input {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        border-radius: 1rem;
         margin-bottom: 2rem;
+        position: relative;
+      }
+
+      & input {
+        flex: 1;
       }
 
       & select {
+        -webkit-appearance: none;
         width: 100%;
         margin-bottom: 2rem;
         font-size: 1.6rem;
@@ -59,4 +71,14 @@
       text-decoration: underline;
     }
   }
+}
+
+.icon {
+  font-size: 1.55rem;
+  padding: 0 0.75rem 0 0.75rem;
+  color: grey;
+}
+
+.test {
+  color: rgb(75, 75, 75);
 }
