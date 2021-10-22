@@ -1,16 +1,15 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Auth from "./components/Pages/Auth";
-import Greet from "./components/Pages/Greet";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
+import Greet from "./components/Pages/Greet";
+import Layout from "./components/Pages/Layout";
 
 import "./App.scss";
 
 const App = () => {
   return (
     <Switch>
-      <div className="main">
-        {" "}
-        {/* Needs replaced with a layout later that accepts children as props */}
+      <Layout>
         <Route path="/" exact>
           <Redirect to="/auth" />
         </Route>
@@ -23,7 +22,7 @@ const App = () => {
         <Route path="/dashboard">
           <Dashboard />
         </Route>
-      </div>
+      </Layout>
     </Switch>
   );
 };
