@@ -17,12 +17,23 @@ const CreateAccount = () => {
       <div className="confirm__container">
         <p className="confirm__container--p">Sign In to Your Account</p>
         <form className="confirm__container--form" onSubmit={submitForm}>
-          <Input type="text" placeholder="First Name" required="required" />
-          <Input type="text" placeholder="Last Name (optional)" />
-          <Input type="number" min="0" max="100" placeholder="Age (optional)" />
+          <div className="confirm__container--form-input">
+            <Input type="text" placeholder="First Name" required="required" />
+          </div>
+          <div className="confirm__container--form-input">
+            <Input type="text" placeholder="Last Name (optional)" />
+          </div>
+          <div className="confirm__container--form-input">
+            <Input
+              type="number"
+              min="0"
+              max="100"
+              placeholder="Age (optional)"
+            />
+          </div>
           <div className="confirm__container--dropdown">
             {/* <label for="goals">What is your goal with this app?</label> */}
-            <select name="goals" id="goals" required>
+            <select name="goals" id="goals">
               <option disabled selected hidden>
                 What are your goals with this app?
               </option>

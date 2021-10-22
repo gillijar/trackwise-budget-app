@@ -3,6 +3,8 @@ import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 
+import { confirmAuth } from "../Utilities/confirmAuth";
+
 const AuthCreateAccount = () => {
   const APIKey = "AIzaSyAmDf_ayrM-XIbiKeLlrcvW3nrxx5KxFJE";
   const history = useHistory();
@@ -51,33 +53,13 @@ const AuthCreateAccount = () => {
 
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${APIKey}`;
 
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            const errorMessage = data.error.message;
-
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        history.replace(`${path}/new-user`);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    confirmAuth(
+      url,
+      enteredEmail,
+      enteredPassword,
+      history,
+      `${path}/new-user`
+    );
   };
 
   return (
