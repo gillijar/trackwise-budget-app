@@ -1,13 +1,35 @@
 .dashboard {
   width: 100%;
   color: #fff;
+  position: relative;
+  padding-top: 8rem;
 
   &__nav {
     width: 100%;
     padding: 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: $color-primary-1;
+    z-index: 10;
+    box-shadow: 0.5rem 0.4rem 1rem rgba(0, 0, 0, 0.5);
+
+    & select {
+      -webkit-appearance: none;
+      width: 80%;
+      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      background: #fff;
+      padding: 1.25rem;
+      border-radius: 1rem;
+      border: none;
+    }
+
+    &--info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &--user {
       font-size: 2.4rem;
@@ -16,6 +38,24 @@
 
     &--dropdown {
       font-size: 3.6rem;
+    }
+
+    &--form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 6rem 0 4rem 0;
+    }
+
+    &-settings {
+      text-align: end;
+
+      &--icon {
+        font-size: 3rem;
+        color: grey;
+      }
     }
   }
 
@@ -59,4 +99,9 @@
 
 .active {
   color: $color-primary-2;
+}
+
+.btn {
+  width: 60%;
+  background: $color-primary-2;
 }
