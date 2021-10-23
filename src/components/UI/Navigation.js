@@ -47,7 +47,15 @@ const Navigation = () => {
             <div className="confirm__container--form-input">
               <Input placeholder="Expense Amount" ref={enteredAmountRef} />
             </div>
-            <select name="category" id="category" ref={enteredCategoryRef}>
+            <select
+              name="category"
+              id="category"
+              ref={enteredCategoryRef}
+              required
+            >
+              <option defaultValue hidden>
+                Select a category
+              </option>
               <option>Bills</option>
               <option>Groceries</option>
               <option>Transportation</option>
