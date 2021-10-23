@@ -1,14 +1,12 @@
 import React from "react";
 import DashboardChart from "./DashboardChart";
 import DashboardLegend from "./DashboardLegend";
+import Navigation from "../../UI/Navigation";
 
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <nav className="dashboard__nav">
-        <p className="dashboard__nav--user">User's Dashboard</p>
-        <p className="dashboard__nav--dropdown">+</p>
-      </nav>
+      <Navigation />
       <DashboardChart />
       <DashboardLegend />
     </div>

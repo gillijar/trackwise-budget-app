@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PieChart from "../../UI/PieChart";
-import BarChart from "../../UI/BarChart";
+import PieChart from "../../UI/Charts/PieChart";
+import BarChart from "../../UI/Charts/BarChart";
 import DashboardCard from "../../UI/DashboardCard";
 
 const DashboardChart = () => {
