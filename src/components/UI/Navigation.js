@@ -1,9 +1,11 @@
 import React, { useState, Fragment, useRef } from "react";
+import { useSelector } from "react-redux";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 
 const Navigation = () => {
   const [navOpen, setNavOpen] = useState(false);
+  const user = useSelector((state) => state.user.name);
 
   const enteredExpenseRef = useRef();
   const enteredAmountRef = useRef();
@@ -26,7 +28,7 @@ const Navigation = () => {
   return (
     <nav className="dashboard__nav">
       <div className="dashboard__nav--info">
-        <p className="dashboard__nav--user">User's Dashboard</p>
+        <p className="dashboard__nav--user">{user}'s Dashboard</p>
         {!navOpen && (
           <p className="dashboard__nav--dropdown" onClick={openNavHandler}>
             +

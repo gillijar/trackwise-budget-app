@@ -4,10 +4,19 @@ import Input from "../UI/Input";
 import Button from "../UI/Button";
 
 import { confirmAuth } from "../Utilities/confirmAuth";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/user";
+import { useEffect } from "react";
 
 const AuthLogin = () => {
   const APIKey = "AIzaSyAmDf_ayrM-XIbiKeLlrcvW3nrxx5KxFJE";
   const history = useHistory();
+  const [user, setUser] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.setUserId(user));
+  }, [user, dispatch]);
 
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -31,7 +40,7 @@ const AuthLogin = () => {
 
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${APIKey}`;
 
-    confirmAuth(url, enteredEmail, enteredPassword, history, "/greet");
+    confirmAuth(url, enteredEmail, enteredPassword, history, "/greet", setUser);
   };
 
   return (

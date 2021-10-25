@@ -1,4 +1,11 @@
-exports.confirmAuth = (url, enteredEmail, enteredPassword, history, route) => {
+exports.confirmAuth = (
+  url,
+  enteredEmail,
+  enteredPassword,
+  history,
+  route,
+  func
+) => {
   fetch(url, {
     method: "POST",
     body: JSON.stringify({
@@ -20,6 +27,7 @@ exports.confirmAuth = (url, enteredEmail, enteredPassword, history, route) => {
     })
     .then((data) => {
       console.log(data);
+      func(data);
       history.replace(`${route}`);
     })
     .catch((err) => {
