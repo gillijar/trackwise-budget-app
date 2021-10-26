@@ -26,7 +26,6 @@ exports.confirmAuth = (
       }
     })
     .then((data) => {
-      console.log(data);
       func(data);
       history.replace(`${route}`);
     })

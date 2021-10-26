@@ -1,32 +1,35 @@
 import React from "react";
 import DashboardCard from "../../UI/DashboardCard";
 import DashboardLegendItem from "./DashboardLegendItem";
+import { useSelector } from "react-redux";
 
 const DashboardLegend = () => {
+  const categories = useSelector((state) => state.user.userData.categories);
+
   const items = [
     {
       name: "Bills",
-      price: 564.75,
+      price: categories.bills,
       id: 1,
     },
     {
       name: "Groceries",
-      price: 168.74,
+      price: categories.groceries,
       id: 2,
     },
     {
       name: "Transportation",
-      price: 56.34,
+      price: categories.transportation,
       id: 3,
     },
     {
       name: "Luxury",
-      price: 45.23,
+      price: categories.luxury,
       id: 4,
     },
     {
       name: "Other",
-      price: 39.53,
+      price: categories.other,
       id: 5,
     },
   ];

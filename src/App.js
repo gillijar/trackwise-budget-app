@@ -5,8 +5,11 @@ import Greet from "./components/Pages/Greet";
 import Layout from "./components/Pages/Layout";
 
 import "./App.scss";
+import { Fragment } from "react";
 
 const App = () => {
+  const localId = localStorage.getItem("localId");
+
   return (
     <Switch>
       <Layout>
@@ -16,12 +19,16 @@ const App = () => {
         <Route path="/auth">
           <Auth />
         </Route>
-        <Route path="/greet">
-          <Greet />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
+        {localId && (
+          <Fragment>
+            <Route path="/greet">
+              <Greet />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+          </Fragment>
+        )}
       </Layout>
     </Switch>
   );

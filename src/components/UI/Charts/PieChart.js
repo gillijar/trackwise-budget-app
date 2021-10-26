@@ -1,7 +1,13 @@
 import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
+import { useSelector } from "react-redux";
 
-const PieChartDisplay = () => {
+const PieChartDisplay = (props) => {
+  const totalExpenses = useSelector(
+    (state) => state.user.userData.totalExpenses
+  );
+  const categories = useSelector((state) => state.user.userData.categories);
+
   const valueOf = (am) => {
     const total = 874.59;
     const amount = +((am / total) * 100).toFixed(2);
@@ -17,18 +23,38 @@ const PieChartDisplay = () => {
         animationDuration={1250}
         animationEasing={"ease"}
         data={[
-          { title: "One", value: valueOf(564.75), color: "#FA28BF" },
-          { title: "Two", value: valueOf(168.74), color: "#3AEB4B" },
-          { title: "Three", value: valueOf(56.34), color: "#1E93FF" },
-          { title: "Four", value: valueOf(45.23), color: "#F3A736" },
-          { title: "Five", value: valueOf(39.53), color: "#CED2D9" },
+          {
+            title: "bills",
+            value: valueOf(categories.bills),
+            color: "#FA28BF",
+          },
+          {
+            title: "groceries",
+            value: valueOf(categories.groceries),
+            color: "#3AEB4B",
+          },
+          {
+            title: "transportation",
+            value: valueOf(categories.transportation),
+            color: "#1E93FF",
+          },
+          {
+            title: "luxury",
+            value: valueOf(categories.luxury),
+            color: "#F3A736",
+          },
+          {
+            title: "other",
+            value: valueOf(categories.other),
+            color: "#CED2D9",
+          },
         ]}
       />
       <div className="pie-chart__donut">
         <div>
           <p>Total:</p>
           <p>
-            <strong>$874.59</strong>
+            <strong>${totalExpenses}</strong>
           </p>
         </div>
       </div>
