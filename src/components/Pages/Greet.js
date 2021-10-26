@@ -6,14 +6,7 @@ import { userActions } from "../../store/user";
 const Greet = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  let id;
-  const test = useSelector((state) => state.user.userId.localId);
-
-  if (localStorage.localId) {
-    id = localStorage.getItem("localId");
-  } else {
-    id = test;
-  }
+  const id = useSelector((state) => state.user.userId.localId);
 
   fetch("https://trackwise-b7eaf-default-rtdb.firebaseio.com/users.json")
     .then((res) => {
@@ -22,7 +15,6 @@ const Greet = () => {
     .then((data) => {
       const user = data[id];
       dispatch(userActions.setUserData(user));
-      localStorage.setItem("localId", id);
 
       setTimeout(() => {
         history.push("/dashboard");
