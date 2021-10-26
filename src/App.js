@@ -1,4 +1,5 @@
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Auth from "./components/Pages/Auth";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import Greet from "./components/Pages/Greet";
@@ -8,7 +9,7 @@ import "./App.scss";
 import { Fragment } from "react";
 
 const App = () => {
-  const localId = localStorage.getItem("localId");
+  const localId = useSelector((state) => state.user.userId.localId);
 
   return (
     <Switch>
