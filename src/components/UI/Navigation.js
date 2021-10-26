@@ -1,11 +1,16 @@
 import React, { useState, Fragment, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/user";
+import { useHistory } from "react-router-dom";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 
 const Navigation = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const [navOpen, setNavOpen] = useState(false);
-  const user = useSelector((state) => state.user.name);
+  const user = useSelector((state) => state.user.userData.name);
 
   const enteredExpenseRef = useRef();
   const enteredAmountRef = useRef();
@@ -13,6 +18,13 @@ const Navigation = () => {
 
   const openNavHandler = () => {
     setNavOpen((prevState) => !prevState);
+  };
+
+  const logoutUserHandler = () => {
+    dispatch(userActions.logoutUser());
+    localStorage.removeItem("localId");
+
+    history.replace("/");
   };
 
   const submitForm = (e) => {
@@ -68,6 +80,10 @@ const Navigation = () => {
               Add Expense
             </Button>
           </form>
+
+          <Button btnClass="btn logout" onClick={logoutUserHandler}>
+            Logout
+          </Button>
 
           <div className="dashboard__nav-settings">
             <i className="fas fa-cog dashboard__nav-settings--icon"></i>

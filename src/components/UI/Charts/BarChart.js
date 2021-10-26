@@ -1,7 +1,10 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 
 const BarChart = () => {
+  const categories = useSelector((state) => state.user.userData.categories);
+
   return (
     <div>
       <Bar
@@ -10,7 +13,13 @@ const BarChart = () => {
           datasets: [
             {
               label: "Amount Spent",
-              data: [564.75, 168.74, 56.34, 45.23, 39.53],
+              data: [
+                categories.bills,
+                categories.groceries,
+                categories.transportation,
+                categories.luxury,
+                categories.other,
+              ],
               backgroundColor: [
                 "rgba(250, 40, 191, 0.35)",
                 "rgba(58, 235, 75, 0.35)",

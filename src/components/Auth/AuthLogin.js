@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-
 import { confirmAuth } from "../Utilities/confirmAuth";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
