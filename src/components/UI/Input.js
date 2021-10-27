@@ -10,6 +10,7 @@ const Input = React.forwardRef((props, ref) => {
       ref={ref}
       onChange={props.onChange}
       value={props.value}
+      autoFocus={props.autoFocus}
     />
   );
 });
