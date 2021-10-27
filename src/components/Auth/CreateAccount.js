@@ -2,14 +2,15 @@ import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
+import { useSelector } from "react-redux";
 
 const CreateAccount = () => {
   const history = useHistory();
+  const metaData = useSelector((state) => state.user.userId);
 
   const enteredFirstNameRef = useRef();
   const enteredLastNameRef = useRef();
   const enteredAgeRef = useRef();
-  const enteredGoalRef = useRef();
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -17,11 +18,30 @@ const CreateAccount = () => {
     const enteredFirstName = enteredFirstNameRef.current.value;
     const enteredLastName = enteredLastNameRef.current.value;
     const enteredAge = enteredAgeRef.current.value;
-    const enteredGoal = enteredGoalRef.current.value;
 
-    console.log(enteredFirstName, enteredLastName, enteredAge, enteredGoal);
+    fetch(
+      `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: enteredFirstName,
+          lastName: enteredLastName,
+          age: enteredAge,
+          email: metaData.email,
+          categories: {
+            bills: 0,
+            groceries: 0,
+            transportation: 0,
+            luxury: 0,
+            other: 0,
+          },
+          totalExpenses: 0,
+        }),
+      }
+    );
 
-    history.push("/dashboard");
+    history.push("/greet");
   };
 
   return (
@@ -35,6 +55,7 @@ const CreateAccount = () => {
               placeholder="First Name"
               required="required"
               ref={enteredFirstNameRef}
+              autoFocus={"autoFocus"}
             />
           </div>
           <div className="confirm__container--form-input">
@@ -54,8 +75,7 @@ const CreateAccount = () => {
             />
           </div>
           <div className="confirm__container--dropdown">
-            {/* <label for="goals">What is your goal with this app?</label> */}
-            <select name="goals" id="goals" ref={enteredGoalRef}>
+            <select name="goals" id="goals">
               <option defaultValue hidden>
                 What are your goals with this app?
               </option>

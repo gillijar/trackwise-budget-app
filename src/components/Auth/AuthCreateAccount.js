@@ -1,14 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/user";
 import { confirmAuth } from "../Utilities/confirmAuth";
 
 const AuthCreateAccount = () => {
+  const dispatch = useDispatch();
   const APIKey = "AIzaSyAmDf_ayrM-XIbiKeLlrcvW3nrxx5KxFJE";
   const history = useHistory();
   const { path } = useRouteMatch();
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    dispatch(userActions.setUserId(user));
+  }, [user, dispatch]);
 
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -58,7 +66,8 @@ const AuthCreateAccount = () => {
       enteredEmail,
       enteredPassword,
       history,
-      `${path}/new-user`
+      `${path}/new-user`,
+      setUser
     );
   };
 
@@ -74,6 +83,7 @@ const AuthCreateAccount = () => {
               placeholder="Email"
               ref={emailInputRef}
               required="required"
+              autoFocus={"autoFocus"}
             />
           </div>
           <div className="confirm__container--form-input">

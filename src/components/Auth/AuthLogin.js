@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Input from "../UI/Input";
-import Button from "../UI/Button";
 import { confirmAuth } from "../Utilities/confirmAuth";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import { useEffect } from "react";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 
 const AuthLogin = () => {
   const APIKey = "AIzaSyAmDf_ayrM-XIbiKeLlrcvW3nrxx5KxFJE";
@@ -49,7 +49,12 @@ const AuthLogin = () => {
         <form className="confirm__container--form" onSubmit={submitForm}>
           <div className="confirm__container--form-input">
             <i className="fas fa-at icon"></i>
-            <Input type="email" placeholder="Email" ref={emailInputRef} />
+            <Input
+              type="email"
+              placeholder="Email"
+              ref={emailInputRef}
+              autoFocus={"autoFocus"}
+            />
           </div>
           <div className="confirm__container--form-input">
             <i className="fas fa-lock icon"></i>

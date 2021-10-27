@@ -10,7 +10,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
 
   const [navOpen, setNavOpen] = useState(false);
-  const user = useSelector((state) => state.user.userData.name);
+  const user = useSelector((state) => state.user.userData.firstName);
 
   const enteredExpenseRef = useRef();
   const enteredAmountRef = useRef();
