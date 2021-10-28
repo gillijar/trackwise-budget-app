@@ -35,21 +35,16 @@ const DashboardLegend = () => {
   ];
 
   return (
-    <DashboardCard>
-      <p className="legend__title">Legend</p>
-      <div className="legend__container">
-        <ul>
-          {items.map((item) => (
-            <DashboardLegendItem
-              key={item.id}
-              name={item.name}
-              color={item.color}
-              price={item.price}
-              id={item.id}
-            />
-          ))}
-        </ul>
-      </div>
+    <DashboardCard title="Legend">
+      {items.map((item) => (
+        <DashboardLegendItem
+          key={item.id}
+          name={item.name}
+          color={item.color}
+          price={item.price}
+          id={item.id}
+        />
+      ))}
     </DashboardCard>
   );
 };

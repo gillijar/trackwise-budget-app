@@ -3,13 +3,11 @@ import { PieChart } from "react-minimal-pie-chart";
 import { useSelector } from "react-redux";
 
 const PieChartDisplay = (props) => {
-  const totalExpenses = useSelector(
-    (state) => state.user.userData.totalExpenses
-  );
+  const totalExpenses = useSelector((state) => state.user.totalExpenses);
   const categories = useSelector((state) => state.user.userData.categories);
 
   const valueOf = (am) => {
-    const total = 874.59;
+    const total = totalExpenses;
     const amount = +((am / total) * 100).toFixed(2);
     return amount;
   };

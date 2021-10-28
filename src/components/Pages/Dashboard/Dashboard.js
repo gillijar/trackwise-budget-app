@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardChart from "./DashboardChart";
 import DashboardLegend from "./DashboardLegend";
+import DashboardExpenses from "./DashboardExpenses";
 import Navigation from "../../UI/Navigation";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +23,7 @@ const Dashboard = () => {
       .then((data) => {
         const user = data[id];
         dispatch(userActions.setUserData(user));
+        dispatch(userActions.setTotalExpense(user.totalExpenses));
         setIsLoading(false);
         setDataLoaded(true);
       });
@@ -35,6 +37,7 @@ const Dashboard = () => {
           <Navigation />
           <DashboardChart />
           <DashboardLegend />
+          <DashboardExpenses />
         </Fragment>
       )}
     </div>
