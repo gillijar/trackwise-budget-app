@@ -11,8 +11,8 @@ const Navigation = () => {
 
   const [navOpen, setNavOpen] = useState(false);
   const user = useSelector((state) => state.user.userData);
+  const totalExpenses = useSelector((state) => state.user.totalExpenses);
   const metaData = useSelector((state) => state.user.userId);
-  console.log(user.totalExpenses);
 
   const enteredExpenseRef = useRef();
   const enteredAmountRef = useRef();
@@ -36,7 +36,21 @@ const Navigation = () => {
     const enteredAmount = enteredAmountRef.current.value;
     const enteredCategory = enteredCategoryRef.current.value;
 
-    console.log(enteredExpense, enteredAmount, enteredCategory);
+    const insertAt = (array, index, ...elements) => {
+      array.splice(index, 0, ...elements);
+    };
+    const categories = user.categories.map((category) => category);
+    const category = categories.find(
+      (category) => category.category === enteredCategory.toLowerCase()
+    );
+    const indexOf = categories.indexOf(category);
+    categories.splice(indexOf, 1);
+
+    const replaceCategory = {
+      amount: +category.amount + +enteredAmount,
+      category: category.category,
+    };
+    insertAt(categories, indexOf, replaceCategory);
 
     fetch(
       `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}/expenses.json`,
@@ -49,7 +63,11 @@ const Navigation = () => {
           title: enteredExpense,
         }),
       }
-    );
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {});
 
     fetch(
       `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
@@ -57,7 +75,7 @@ const Navigation = () => {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          totalExpenses: +user.totalExpenses + +enteredAmount,
+          totalExpenses: totalExpenses + +enteredAmount,
         }),
       }
     )
@@ -65,7 +83,29 @@ const Navigation = () => {
         return res.json();
       })
       .then(() => {
-        dispatch(userActions.addTotalExpenses(enteredAmount));
+        dispatch(userActions.setTotalExpenses(+totalExpenses + +enteredAmount));
+      });
+
+    fetch(
+      `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          categories: categories,
+        }),
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        dispatch(
+          userActions.setUserData({
+            ...user,
+            categories: categories,
+          })
+        );
       });
   };
 

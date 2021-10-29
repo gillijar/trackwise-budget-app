@@ -2,7 +2,7 @@ import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { useSelector } from "react-redux";
 
-const PieChartDisplay = (props) => {
+const PieChartDisplay = () => {
   const totalExpenses = useSelector((state) => state.user.totalExpenses);
   const categories = useSelector((state) => state.user.userData.categories);
 
@@ -23,27 +23,27 @@ const PieChartDisplay = (props) => {
         data={[
           {
             title: "bills",
-            value: valueOf(categories.bills),
+            value: valueOf(categories[0].amount),
             color: "#FA28BF",
           },
           {
             title: "groceries",
-            value: valueOf(categories.groceries),
+            value: valueOf(categories[1].amount),
             color: "#3AEB4B",
           },
           {
             title: "transportation",
-            value: valueOf(categories.transportation),
+            value: valueOf(categories[2].amount),
             color: "#1E93FF",
           },
           {
             title: "luxury",
-            value: valueOf(categories.luxury),
+            value: valueOf(categories[3].amount),
             color: "#F3A736",
           },
           {
             title: "other",
-            value: valueOf(categories.other),
+            value: valueOf(categories[4].amount),
             color: "#CED2D9",
           },
         ]}
@@ -52,7 +52,7 @@ const PieChartDisplay = (props) => {
         <div>
           <p>Total:</p>
           <p>
-            <strong>${totalExpenses}</strong>
+            <strong>${totalExpenses.toFixed(2)}</strong>
           </p>
         </div>
       </div>

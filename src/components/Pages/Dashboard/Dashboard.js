@@ -22,8 +22,10 @@ const Dashboard = () => {
       })
       .then((data) => {
         const user = data[id];
+        console.log(user);
         dispatch(userActions.setUserData(user));
-        dispatch(userActions.setTotalExpense(user.totalExpenses));
+        dispatch(userActions.setTotalExpenses(user.totalExpenses));
+        dispatch(userActions.setAllExpenses(user.expenses));
         setIsLoading(false);
         setDataLoaded(true);
       });

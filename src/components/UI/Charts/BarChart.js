@@ -14,11 +14,11 @@ const BarChart = () => {
             {
               label: "Amount Spent",
               data: [
-                categories.bills,
-                categories.groceries,
-                categories.transportation,
-                categories.luxury,
-                categories.other,
+                categories[0].amount,
+                categories[1].amount,
+                categories[2].amount,
+                categories[3].amount,
+                categories[4].amount,
               ],
               backgroundColor: [
                 "rgba(250, 40, 191, 0.35)",
