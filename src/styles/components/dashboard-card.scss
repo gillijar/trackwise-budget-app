@@ -7,4 +7,16 @@
   padding: 2.5rem 2rem;
   box-shadow: 0.5rem 0.4rem 1rem rgba(0, 0, 0, 0.5);
   text-align: center;
+
+  &__container {
+    & ul {
+      list-style-type: none;
+    }
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+    font-style: italic;
+  }
 }

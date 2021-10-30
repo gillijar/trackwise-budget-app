@@ -5,6 +5,8 @@ const userSlice = createSlice({
   initialState: {
     userId: {}, // rename data later
     userData: {},
+    expenses: [],
+    totalExpenses: 0,
   },
   reducers: {
     setUserId(state, action) {
@@ -13,9 +15,19 @@ const userSlice = createSlice({
     setUserData(state, action) {
       state.userData = action.payload;
     },
+    setTotalExpenses(state, action) {
+      state.totalExpenses = action.payload;
+    },
+    setAllExpenses(state, action) {
+      state.expenses = action.payload;
+    },
+    addExpense(state, action) {
+      state.expenses.push(action.payload);
+    },
     logoutUser(state) {
       state.userId = "";
       state.userData = "";
+      state.expenses = [];
     },
   },
 });

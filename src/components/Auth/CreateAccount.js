@@ -29,13 +29,28 @@ const CreateAccount = () => {
           lastName: enteredLastName,
           age: enteredAge,
           email: metaData.email,
-          categories: {
-            bills: 0,
-            groceries: 0,
-            transportation: 0,
-            luxury: 0,
-            other: 0,
-          },
+          categories: [
+            {
+              category: "bills",
+              amount: 0,
+            },
+            {
+              category: "groceries",
+              amount: 0,
+            },
+            {
+              category: "transportation",
+              amount: 0,
+            },
+            {
+              category: "luxury",
+              amount: 0,
+            },
+            {
+              category: "other",
+              amount: 0,
+            },
+          ],
           totalExpenses: 0,
         }),
       }
