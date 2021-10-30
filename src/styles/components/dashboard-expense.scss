@@ -1,5 +1,7 @@
 .expense {
   padding: 2.5rem 0;
+  max-height: 60vh;
+  overflow: scroll;
 
   &__item {
     width: 100%;
@@ -20,7 +22,6 @@
     &-tag {
       width: 4.5rem;
       height: 4.5rem;
-      background: #3aeb4b;
       border-top-left-radius: 1.5rem;
     }
 
@@ -35,4 +36,24 @@
       padding-right: 2rem;
     }
   }
+}
+
+.bills {
+  background: $graph-1;
+}
+
+.groceries {
+  background: $graph-2;
+}
+
+.transportation {
+  background: $graph-3;
+}
+
+.luxury {
+  background: $graph-4;
+}
+
+.other {
+  background: $graph-5;
 }

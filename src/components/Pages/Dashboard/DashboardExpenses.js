@@ -11,7 +11,11 @@ const DashboardExpenses = () => {
   return (
     <DashboardCard title="Expenses" cardClass="expense">
       {reversed.map((expense) => (
-        <DashboardExpenseItem title={expense.title} price={expense.price} />
+        <DashboardExpenseItem
+          title={expense.title}
+          price={expense.price}
+          category={expense.category}
+        />
       ))}
     </DashboardCard>
   );

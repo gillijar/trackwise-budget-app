@@ -27,6 +27,7 @@ const userSlice = createSlice({
     logoutUser(state) {
       state.userId = "";
       state.userData = "";
+      state.expenses = [];
     },
   },
 });
