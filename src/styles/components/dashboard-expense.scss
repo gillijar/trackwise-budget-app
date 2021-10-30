@@ -1,10 +1,16 @@
 .expense {
+  padding: 2.5rem 0;
+
   &__item {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
 
     &-description {
       display: flex;
@@ -21,6 +27,12 @@
     &-title {
       padding-left: 1.5rem;
       font-size: 1.6rem;
+    }
+
+    &-price {
+      font-size: 1.6rem;
+      font-weight: 500;
+      padding-right: 2rem;
     }
   }
 }

@@ -5,11 +5,14 @@ import { useSelector } from "react-redux";
 
 const DashboardExpenses = () => {
   const expenses = useSelector((state) => state.user.expenses);
-  console.log(expenses[0]);
+  const reversed = expenses.map((item) => item).reverse();
+  console.log(reversed);
 
   return (
-    <DashboardCard title="Expenses">
-      <DashboardExpenseItem />
+    <DashboardCard title="Expenses" cardClass="expense">
+      {reversed.map((expense) => (
+        <DashboardExpenseItem title={expense.title} price={expense.price} />
+      ))}
     </DashboardCard>
   );
 };

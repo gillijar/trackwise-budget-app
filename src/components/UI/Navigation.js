@@ -10,7 +10,9 @@ const Navigation = () => {
   const dispatch = useDispatch();
 
   const [navOpen, setNavOpen] = useState(false);
+
   const user = useSelector((state) => state.user.userData);
+  const expenses = useSelector((state) => state.user.expenses);
   const totalExpenses = useSelector((state) => state.user.totalExpenses);
   const metaData = useSelector((state) => state.user.userId);
 
@@ -53,45 +55,20 @@ const Navigation = () => {
     insertAt(categories, indexOf, replaceCategory);
 
     fetch(
-      `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}/expenses.json`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          category: enteredCategory,
-          price: enteredAmount,
-          title: enteredExpense,
-        }),
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then(() => {});
-
-    fetch(
       `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          expenses: [
+            ...expenses,
+            {
+              category: enteredCategory,
+              price: enteredAmount,
+              title: enteredExpense,
+            },
+          ],
           totalExpenses: totalExpenses + +enteredAmount,
-        }),
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then(() => {
-        dispatch(userActions.setTotalExpenses(+totalExpenses + +enteredAmount));
-      });
-
-    fetch(
-      `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
           categories: categories,
         }),
       }
@@ -101,12 +78,59 @@ const Navigation = () => {
       })
       .then(() => {
         dispatch(
+          userActions.addExpense({
+            category: enteredCategory,
+            price: enteredAmount,
+            title: enteredExpense,
+          })
+        );
+        dispatch(userActions.setTotalExpenses(+totalExpenses + +enteredAmount));
+        dispatch(
           userActions.setUserData({
             ...user,
             categories: categories,
           })
         );
       });
+
+    // fetch(
+    //   `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
+    //   {
+    //     method: "PATCH",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       totalExpenses: totalExpenses + +enteredAmount,
+    //     }),
+    //   }
+    // )
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then(() => {
+    //     dispatch(userActions.setTotalExpenses(+totalExpenses + +enteredAmount));
+    //   });
+
+    // fetch(
+    //   `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,
+    //   {
+    //     method: "PATCH",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       categories: categories,
+    //     }),
+    //   }
+    // )
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then(() => {
+    //     dispatch(
+    //       userActions.setUserData({
+    //         ...user,
+    //         categories: categories,
+    //       })
+    //     );
+    //   });
   };
 
   return (

@@ -25,9 +25,13 @@ const Dashboard = () => {
         console.log(user);
         dispatch(userActions.setUserData(user));
         dispatch(userActions.setTotalExpenses(user.totalExpenses));
-        dispatch(userActions.setAllExpenses(user.expenses));
         setIsLoading(false);
         setDataLoaded(true);
+        if (user.expenses) {
+          dispatch(userActions.setAllExpenses(user.expenses));
+        } else {
+          return;
+        }
       });
   }, [dispatch, id]);
 

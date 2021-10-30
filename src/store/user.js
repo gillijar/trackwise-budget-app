@@ -21,6 +21,9 @@ const userSlice = createSlice({
     setAllExpenses(state, action) {
       state.expenses = action.payload;
     },
+    addExpense(state, action) {
+      state.expenses.push(action.payload);
+    },
     logoutUser(state) {
       state.userId = "";
       state.userData = "";

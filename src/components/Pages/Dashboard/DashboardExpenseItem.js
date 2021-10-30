@@ -7,7 +7,7 @@ const DashboardExpenseItem = (props) => {
         <div className="expense__item-tag"></div>
         <p className="expense__item-title">{props.title}</p>
       </div>
-      <p className="expense__item-price">{props.amount}</p>
+      <p className="expense__item-price">${props.price}</p>
     </li>
   );
 };
