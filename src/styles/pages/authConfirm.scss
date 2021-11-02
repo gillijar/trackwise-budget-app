@@ -2,12 +2,25 @@
   background: $color-primary-1;
   height: 70vh;
 
+  @include respond(tab-land) {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__container {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @include respond(tab-land) {
+      width: 40%;
+      height: 80%;
+      margin: auto;
+    }
 
     &--dropdown {
       width: 80%;

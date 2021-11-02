@@ -9,7 +9,7 @@
     padding: 3rem;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     background: $color-primary-1;
     z-index: 10;
     box-shadow: 0.5rem 0.4rem 1rem rgba(0, 0, 0, 0.5);
@@ -62,6 +62,12 @@
   &__chart {
     text-align: center;
 
+    &--card {
+      @include respond(tab-land) {
+        width: 55%;
+      }
+    }
+
     &-info {
       padding-bottom: 1.5rem;
 
@@ -93,6 +99,21 @@
       & :not(:last-child) {
         padding-right: 1.5rem;
       }
+    }
+  }
+
+  &__larger-screen {
+    @include respond(tab-land) {
+      display: flex;
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+
+  &__legend {
+    @include respond(tab-land) {
+      width: 40%;
+      height: min-content;
     }
   }
 }
