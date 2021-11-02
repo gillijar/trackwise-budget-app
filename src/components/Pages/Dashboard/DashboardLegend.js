@@ -7,7 +7,7 @@ const DashboardLegend = () => {
   const items = useSelector((state) => state.user.userData.categories);
 
   return (
-    <DashboardCard title="Legend">
+    <DashboardCard title="Legend" cardClass="dashboard__legend">
       {items.map((item, i) => (
         <DashboardLegendItem
           key={item.category}

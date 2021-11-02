@@ -74,12 +74,22 @@
     align-items: center;
     z-index: 10;
 
+    @include respond(tab-land) {
+      width: 50%;
+      margin: 0 auto;
+    }
+
     &--btn2 {
       height: 5.5rem;
       background: white;
       width: 90%;
       padding: 1rem 2rem;
       margin-bottom: 1.5rem;
+
+      @include respond(tab-land) {
+        width: 70%;
+        border: 1.5px solid $color-primary-1;
+      }
     }
 
     &--container {
@@ -90,10 +100,19 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      @include respond(tab-land) {
+        height: 70%;
+        border-radius: 2rem;
+        background: #fff;
+      }
     }
 
     &--google {
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &-logo {
         height: 100%;
@@ -113,6 +132,10 @@
     &--btn {
       background-color: $color-primary-1;
       width: 90%;
+
+      @include respond(tab-land) {
+        width: 70%;
+      }
 
       &:not(:last-child) {
         margin-bottom: 1.5rem;

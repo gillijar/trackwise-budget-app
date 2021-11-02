@@ -41,8 +41,10 @@ const Dashboard = () => {
       {dataLoaded && (
         <Fragment>
           <Navigation />
-          <DashboardChart />
-          <DashboardLegend />
+          <div className="dashboard__larger-screen">
+            <DashboardChart />
+            <DashboardLegend />
+          </div>
           <DashboardExpenses />
         </Fragment>
       )}

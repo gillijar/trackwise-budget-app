@@ -32,7 +32,7 @@ const DashboardChart = () => {
   };
 
   return (
-    <DashboardCard>
+    <DashboardCard cardClass="dashboard__chart--card">
       <div className="dashboard__chart">
         <div className="dashboard__chart-info">
           <p className="dashboard__chart-info--title">Monthly Expenses</p>

@@ -34,7 +34,9 @@ const Navigation = () => {
   const submitForm = (e) => {
     e.preventDefault();
 
-    const enteredExpense = enteredExpenseRef.current.value;
+    const expense = enteredExpenseRef.current.value;
+    const enteredExpense =
+      expense.toLowerCase()[0].toUpperCase() + expense.slice(1);
     const enteredAmount = enteredAmountRef.current.value;
     const enteredCategory = enteredCategoryRef.current.value;
 
