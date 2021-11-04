@@ -15,6 +15,15 @@
     line-height: 1.25;
     padding: 0 0 10rem 0;
     text-align: center;
+
+    @include respond(phone) {
+      font-size: 4rem;
+      padding: 0;
+    }
+
+    @include respond(tab-port) {
+      font-size: 5rem;
+    }
   }
 
   &__bubble {
@@ -32,6 +41,16 @@
       width: 42.1rem;
       border-radius: 50%;
       background: $color-transparent-1;
+
+      @include respond(phone) {
+        height: 60rem;
+        width: 60rem;
+        right: -30%;
+      }
+
+      @include respond(tab-land) {
+        right: -20%;
+      }
 
       &::before {
         content: "";
@@ -64,6 +83,16 @@
       background: $color-transparent-1;
       top: -5%;
       left: -10%;
+
+      @include respond(phone) {
+        height: 33rem;
+        width: 33rem;
+        left: -15%;
+      }
+
+      @include respond(tab-land) {
+        left: -5%;
+      }
 
       &::before {
         content: "";

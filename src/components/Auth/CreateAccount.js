@@ -15,9 +15,15 @@ const CreateAccount = () => {
   const submitForm = (e) => {
     e.preventDefault();
 
-    const enteredFirstName = enteredFirstNameRef.current.value;
-    const enteredLastName = enteredLastNameRef.current.value;
+    const firstName = enteredFirstNameRef.current.value;
+    const lastName = enteredLastNameRef.current.value;
     const enteredAge = enteredAgeRef.current.value;
+
+    const enteredFirstName =
+      firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
+
+    const enteredLastName =
+      lastName[0].toUpperCase() + lastName.slice(1).toLowerCase();
 
     fetch(
       `https://trackwise-b7eaf-default-rtdb.firebaseio.com/users/${metaData.localId}.json`,

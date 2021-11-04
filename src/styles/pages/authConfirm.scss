@@ -2,6 +2,12 @@
   background: $color-primary-1;
   height: 70vh;
 
+  @include respond(tab-port) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
   @include respond(tab-land) {
     height: 100vh;
     display: flex;
@@ -16,10 +22,21 @@
     justify-content: center;
     align-items: center;
 
+    @include respond(tab-port) {
+      width: 60%;
+    }
+
     @include respond(tab-land) {
       width: 40%;
       height: 80%;
       margin: auto;
+      background: $color-secondary-1;
+      border-radius: 2rem;
+      height: 50%;
+    }
+
+    @include respond(big-desktop) {
+      width: 30%;
     }
 
     &--dropdown {
